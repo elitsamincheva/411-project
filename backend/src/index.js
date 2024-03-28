@@ -8,6 +8,7 @@ const app = express();   // create web server
 
 // middlewares
 app.use(express.json());     // repsonse serialized as json
+// let corsoptions = {origin: ['http://localhost:3001']};
 app.use(cors());             
 
 app.get("/api/recipes/search", async (req, res)=>{
