@@ -8,7 +8,7 @@ import * as api from './api'
 // our app
 function App() {
     const [ingredients, setIngredients] = useState("");
-    const[recipes, setRecipes] = useState([]);
+    const [recipes, setRecipes] = useState([]);
 
     const handleSubmit = async () =>{
         try { 
