@@ -14,9 +14,9 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
 const pages = []; // Remove "Products", "Pricing", and "Blog" tabs
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Favorites', 'Logout'];
 
-function ResponsiveAppBar() {
+function TopMenuBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -159,4 +159,4 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
+export default TopMenuBar;

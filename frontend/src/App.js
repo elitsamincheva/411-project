@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, TextField, Button } from '@mui/material';
 import * as api from './api';
 import RecipeCard from './components/RecipeCard';
-import ResponsiveAppBar from './ResponsiveAppBar'; // Import the ResponsiveAppBar component
+import TopMenuBar from './components/TopMenuBar'; 
 
 function App() {
     const [ingredients, setIngredients] = React.useState({
@@ -32,7 +32,7 @@ function App() {
     return (
         <Grid container spacing={2}>
             {/* Include the ResponsiveAppBar component here */}
-            <ResponsiveAppBar />
+            <TopMenuBar />
 
             {/* Left column for text fields and submit button */}
             <Grid item xs={4}>
