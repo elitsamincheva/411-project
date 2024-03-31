@@ -1,28 +1,25 @@
-import * as React from 'react'; // Import React library
-import AppBar from '@mui/material/AppBar'; // Import AppBar component from Material-UI
-import Box from '@mui/material/Box'; // Import Box component from Material-UI
-import Toolbar from '@mui/material/Toolbar'; // Import Toolbar component from Material-UI
-import IconButton from '@mui/material/IconButton'; // Import IconButton component from Material-UI
-import Typography from '@mui/material/Typography'; // Import Typography component from Material-UI
-import Menu from '@mui/material/Menu'; // Import Menu component from Material-UI
-import MenuIcon from '@mui/icons-material/Menu'; // Import MenuIcon component from Material-UI
-import Container from '@mui/material/Container'; // Import Container component from Material-UI
-import Avatar from '@mui/material/Avatar'; // Import Avatar component from Material-UI
-import Button from '@mui/material/Button'; // Import Button component from Material-UI
-import Tooltip from '@mui/material/Tooltip'; // Import Tooltip component from Material-UI
-import MenuItem from '@mui/material/MenuItem'; // Import MenuItem component from Material-UI
-import AdbIcon from '@mui/icons-material/Adb'; // Import AdbIcon component from Material-UI
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import AdbIcon from '@mui/icons-material/Adb';
 
-// List of pages and settings
-const pages = ['Recipe Search']; // List of navigation pages
-const settings = ['Favorites', 'Logout']; // List of user settings
+const pages = ['Recipes'];
+const settings = ['Favorites', 'Logout'];
 
 function TopMenuBar() {
-  // State variables for menu anchors
-  const [anchorElNav, setAnchorElNav] = React.useState(null); // State variable for navigation menu
-  const [anchorElUser, setAnchorElUser] = React.useState(null); // State variable for user menu
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  // Handlers for opening and closing navigation menu
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -39,14 +36,9 @@ function TopMenuBar() {
   };
 
   return (
-    // Top app bar component
-    <AppBar position="static">
-      {/* Container for limiting width */}
+  <AppBar position="static" elevation={0} sx={{ backgroundColor: '#F19C79', fontFamily: '"Roboto Mono", monospace', paddingTop: '10px' }}>
       <Container maxWidth="xl">
-        {/* Toolbar within the app bar */}
-        <Toolbar disableGutters>
-          {/* Logo section for larger screens */}
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> {/* Logo icon */}
+        <Toolbar disableGutters sx={{ p: 2 }}>
           <Typography
             variant="h6"
             noWrap
@@ -58,14 +50,13 @@ function TopMenuBar() {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: '#F6F4D2',
               textDecoration: 'none',
             }}
           >
-            beat bite {/* Logo text */}
+            BeatBite
           </Typography>
 
-          {/* Hamburger icon for mobile navigation */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -73,14 +64,36 @@ function TopMenuBar() {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
+              color="#F6F4D2"
             >
-              <MenuIcon /> {/* Menu icon */}
+              <MenuIcon />
             </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
           </Box>
-          
-          {/* Placeholder logo for mobile */}
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> {/* Placeholder logo */}
+          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -93,37 +106,32 @@ function TopMenuBar() {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: '#F6F4D2',
               textDecoration: 'none',
             }}
           >
-            LOGO {/* Placeholder text */}
+            BeatBite
           </Typography>
-          
-          {/* Navigation buttons for larger screens */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {/* Map through pages and render buttons */}
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ mx: 2, my: 2, color: '#F6F4D2', fontFamily: '"Roboto Mono", monospace' }}
               >
-                {page} {/* Page name */}
+                {page}
               </Button>
             ))}
           </Box>
 
-          {/* User menu icon with settings */}
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings"> {/* Tooltip */}
+            <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> {/* User avatar */}
+                <Avatar src="" sx={{ color: '#F19C79', bgcolor: '#F6F4D2' }} />
               </IconButton>
             </Tooltip>
-            {/* Dropdown menu for user settings */}
             <Menu
-              sx={{ mt: '45px' }}
+              sx={{ mt: '55px' }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
@@ -138,10 +146,13 @@ function TopMenuBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {/* Map through settings and render menu items */}
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography> {/* Setting name */}
+                <MenuItem key={setting} onClick={handleCloseUserMenu} sx={{ color: '#A44A3F',
+                  '&:hover': {
+                    backgroundColor: '#F6F4D2',
+                  }, 
+                }}>
+                  <Typography textAlign="center" fontFamily='"Roboto Mono", monospace'>{setting}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -151,5 +162,4 @@ function TopMenuBar() {
     </AppBar>
   );
 }
-
 export default TopMenuBar;
