@@ -13,7 +13,7 @@ function App() {
     });
     const [recipes, setRecipes] = React.useState([]);
 
-    // Function to handle form submission
+    // Function to handle form submission when press button
     const handleSubmit = async () => {
         try { 
             // Create a comma-separated list of ingredients
