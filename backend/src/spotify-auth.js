@@ -85,7 +85,7 @@ export const authCallback = async (req, res) => {
         //     access_token: access_token,
         //     refresh_token: refresh_token
         //   }));
-        res.redirect('http://localhost:3001/')
+        res.redirect('http://localhost:3001/recipe-search')
       } else {
         res.redirect('/#' +
           querystring.stringify({

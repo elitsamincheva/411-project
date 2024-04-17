@@ -1,17 +1,16 @@
 import React from 'react';
-import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import RecipeSearchPage from './pages/RecipeSearchPage';
-
+import LoginPage from './pages/LoginPage';
 import Layout from './pages/Layout';
 
 function App() {
   return (
     <BrowserRouter basename='/'>
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<RecipeSearchPage />} />
-          
+        <Route path="/" element={<LoginPage />} />
+        <Route element={<Layout />}>
+        <Route path="/recipe-search" element={<RecipeSearchPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -119,7 +119,7 @@ function TopMenuBar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Link to='/'> 
+              <Link to='/' style={{ textDecoration: 'none' }}> 
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
@@ -129,7 +129,7 @@ function TopMenuBar() {
               </Button>
               </Link>
             ))}
-            <a href='http://localhost:3000/login'>Login Here</a>
+            {/* <a href='http://localhost:3000/login'>Login Here</a> */}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
