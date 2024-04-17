@@ -2,12 +2,20 @@ import express from 'express'; // Import Express framework
 import cors from 'cors'; // Import CORS middleware
 import 'dotenv/config.js'; // Import dotenv for environment variables
 import * as RecipeAPI from './recipe-api.js'; // Import RecipeAPI module
+import cookieParser from 'cookie-parser';
+import { login, authCallback, refreshToken } from './spotify-auth.js';
 
 const app = express(); // Create an instance of Express to create the web server
 
 // Middleware setup
 app.use(express.json()); // Parse incoming requests with JSON payloads
 app.use(cors()); // Enable CORS for all routes
+app.use(cookieParser());
+
+app.get('/login', login);
+app.get('/auth/callback', authCallback);
+app.get('/refresh_token', refreshToken);
+
 
 // Route for searching recipes by ingredients
 app.get("/api/recipes/search", async (req, res) => {

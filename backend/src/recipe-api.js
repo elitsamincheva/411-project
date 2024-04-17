@@ -1,6 +1,6 @@
 // Retrieve API key from environment variables
 const apiKey = process.env.API_KEY;
-
+console.log(apiKey);
 // Function for searching recipes by ingredients
 export const searchByIngredients = async (ingredients) => {
     // Check if API key is available

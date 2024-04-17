@@ -12,13 +12,16 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { Link } from 'react-router-dom';
 
-const pages = ['Recipes'];
+const pages = ['Recipe Search'];
 const settings = ['Favorites', 'Logout'];
 
 function TopMenuBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  //const [isLoggedIn, setIsLoggenIn] = React.useState(false);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -35,6 +38,8 @@ function TopMenuBar() {
     setAnchorElUser(null);
   };
 
+  
+
   return (
   <AppBar position="static" elevation={0} sx={{ backgroundColor: '#F19C79', fontFamily: '"Roboto Mono", monospace', paddingTop: '10px' }}>
       <Container maxWidth="xl">
@@ -43,7 +48,7 @@ function TopMenuBar() {
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -114,6 +119,7 @@ function TopMenuBar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
+              <Link to='/'> 
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
@@ -121,7 +127,9 @@ function TopMenuBar() {
               >
                 {page}
               </Button>
+              </Link>
             ))}
+            <a href='http://localhost:3000/login'>Login Here</a>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
