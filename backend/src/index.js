@@ -4,13 +4,14 @@ import 'dotenv/config.js'; // Import dotenv for environment variables
 import * as RecipeAPI from './recipe-api.js'; // Import RecipeAPI module
 
 const app = express(); // Create an instance of Express to create the web server
-
+const port = 8000;
 // Middleware setup
 app.use(express.json()); // Parse incoming requests with JSON payloads
 app.use(cors()); // Enable CORS for all routes
 
 // Route for searching recipes by ingredients
 app.get("/api/recipes/search", async (req, res) => {
+    console.log("made it to index.js")
     try {
         // Call the searchByIngredients function from RecipeAPI module
         const recipes = await RecipeAPI.searchByIngredients(req.query.ingredients);
@@ -23,6 +24,6 @@ app.get("/api/recipes/search", async (req, res) => {
 });
 
 // Start the web server on port 3000
-app.listen(3000, () => {
-    console.log("heyyyyy ;)"); // Log a message when the server starts successfully
+app.listen(port, () => {
+    console.log(`heyyyyy ;), listening on port ${port}`); // Log a message when the server starts successfully
 });

@@ -3,6 +3,7 @@ const apiKey = process.env.API_KEY;
 
 // Function for searching recipes by ingredients
 export const searchByIngredients = async (ingredients) => {
+    console.log("calling api", apiKey)
     // Check if API key is available
     if (!apiKey) {
         // Throw an error if API key is not found
@@ -20,8 +21,10 @@ export const searchByIngredients = async (ingredients) => {
         ranking: 1 // Ranking option
     };
 
+
     // Append query parameters to the URL
     url.search = new URLSearchParams(queryParams).toString();
+
 
     try {
         // Fetch data from the Spoonacular API
