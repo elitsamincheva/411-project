@@ -6,7 +6,7 @@ import cookieParser from 'cookie-parser';
 import { login, authCallback, getUserInfo } from './spotify-auth.js';
 import session from 'express-session';
 const app = express(); // Create an instance of Express to create the web server
-const port = 8000;
+const port = 3000;
 // Middleware setup
 app.use(express.json()); // Parse incoming requests with JSON payloads
 app.use(cors({
