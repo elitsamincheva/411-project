@@ -4,6 +4,7 @@ import * as api from '../api';
 import RecipeCard from '../components/RecipeCard';
 
 
+
 function RecipeSearchPage(){
     // State variables to manage ingredients and recipes
     const [ingredients, setIngredients] = React.useState({
@@ -37,9 +38,7 @@ function RecipeSearchPage(){
     }
     return (
         <Grid container spacing={2}>
-            {/* Include the top menu bar */}
-            
-
+           
             {/* Left column for text fields and submit button */}
             <Grid item xs={4}>
                 {/* Nested grid container with direction set to column and alignItems set to center */}
@@ -58,8 +57,23 @@ function RecipeSearchPage(){
                     </Grid>
                     {/* Submit button */}
                     <Grid item>
-                        <Button variant="contained" onClick={handleSubmit}>Submit</Button>
+                        <Button
+                            variant="contained"
+                            onClick={handleSubmit}
+                            sx={{
+                                backgroundColor: '#A44A3F', // Set background color
+                                color: '#FFC7C0', // Set text color
+                                '&:hover': {
+                                    backgroundColor: '#6d312a', // Set background color on hover
+                                    color: '#F8B0A8', // Set text color on hover
+                                },
+                                
+                            }}
+                        >
+                            Submit
+                        </Button>
                     </Grid>
+
                 </Grid>
             </Grid>
 
@@ -72,6 +86,7 @@ function RecipeSearchPage(){
                             <RecipeCard
                                 title={recipe.title}
                                 image={recipe.image}
+                                recipeId={recipe.id} 
                             />
                         </Grid>
                     ))}

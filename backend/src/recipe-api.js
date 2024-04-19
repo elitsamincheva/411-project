@@ -38,3 +38,30 @@ export const searchByIngredients = async (ingredients) => {
         console.log(error);
     }
 };
+
+
+// function for getting recipe details
+
+export const getRecipeDetails = async (recipeId) => {
+    // Check if API key is available
+    if (!apiKey) {
+        // Throw an error if API key is not found
+        throw new Error("API key not found");
+    }
+    
+    const url = new URL(`https://api.spoonacular.com/recipes/${recipeId}/information`);
+
+    url.search = new URLSearchParams({apiKey}).toString();
+
+    try {
+        const searchResponse = await fetch(url);
+        const resultsJson = await searchResponse.json();
+        // return the JSON results
+        return resultsJson;
+    } catch(error) {
+        console.log(error);
+    }
+};
+
+
+
