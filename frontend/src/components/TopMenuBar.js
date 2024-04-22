@@ -74,7 +74,7 @@ function TopMenuBar() {
             variant="h6"
             noWrap
             component={Link}
-            to="/"
+            to="/login"
             sx={{
               mr: 2,
               fontFamily: 'monospace',

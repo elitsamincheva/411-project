@@ -1,5 +1,4 @@
 import React from 'react';
-import { signInWithGoogle } from '../Firebase';
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material'; 
 import  spotify_logo from '/Users/sammaguire/Desktop/411-project/frontend/src/pages/spotify_logo.png'
