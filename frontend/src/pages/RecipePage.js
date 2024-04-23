@@ -57,7 +57,7 @@ function RecipePage() {
             </Grid>
             <Grid item xs={12} md={4}> {/* Right column takes full width on small screens and 4 columns on medium screens */}
                 <div style={{ textAlign: 'right' }}>
-                    <Button variant="contained" >
+                    <Button variant = "contained">
                         Generate Playlist
                     </Button>
                 </div>
