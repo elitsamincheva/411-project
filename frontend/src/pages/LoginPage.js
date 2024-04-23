@@ -6,7 +6,6 @@ import spotify_logo from '../images/spotify_logo.png';
 function LoginPage() {
 
     const backgroundStyle = {
-        background: 'rgb(241,156,121)',
         background: 'radial-gradient(circle, rgba(241,156,121,1) 0%, rgba(212,224,155,1) 100%)',
         height: '100vh',
         display: 'flex',
@@ -34,7 +33,6 @@ function LoginPage() {
 
     const titleStyle = {
         fontSize: '62px',
-        color: '#fff',
         color: '#A44A3F',
         fontFamily: '"Roboto Mono", monospace',
         margin: '0px',
@@ -64,37 +62,22 @@ function LoginPage() {
             backgroundColor: '#1ED760', // Darker color on hover
         },
     };
-    
-    const HomeButtonStyle = {
-        padding: '10px 20px',
-        fontSize: '16px',
-        borderRadius: '30px',
-        backgroundColor: '#F6F4D2',
-        color: '#A44A3F',
-        textDecoration: 'none',
-        border: 'none',
-        cursor: 'pointer',
-        fontFamily: '"Roboto Mono", monospace',
-    };
 
     return(
         <div style={backgroundStyle}>
             {/* Title of the website */}
           <div style={headingContainerStyle}>  
             <h1 style={titleStyle}>BeatBite</h1>
-            <h2 style={subTitleStyle} >Listen to your food</h2>
+            <h2 style={subTitleStyle} >Recipe and Playlist Generator</h2>
         </div>
          <div style={buttonContainerStyle}>
                 {/* Login button with Spotify logo */}
-                <Button component={Link} to='/login' variant="contained" style={loginButtonStyle}>
+                <Button component={Link} to='http://localhost:3000/login' variant="contained" style={loginButtonStyle}>
                     <span> Login with Spotify </span>
-                    <img src={spotify_logo} alt="Spotify Logo" style={{ width: '30px', marginLeft: '10px' }} />
+                    <img src={spotify_logo} alt="Spotify Logo" style={{ width: '30px', marginLeft: '10px' }}/>
                 </Button>
-                {/* Home button */}
-                <Button component={Link} to='/' variant="contained" style={HomeButtonStyle}>Home</Button>
             </div>
         </div>
-
    );
 }
 
