@@ -1,12 +1,32 @@
 import React from 'react';
-import { Grid, TextField, Button } from '@mui/material';
+import { Grid, TextField, Button, ThemeProvider, createTheme } from '@mui/material';
 import * as api from '../api';
 import RecipeCard from '../components/RecipeCard';
 
+// Create a theme for consistent application styling
+const theme = createTheme({
+  typography: {
+    fontFamily: '"Roboto Mono", monospace',
+  },
+  palette: {
+    primary: {
+      main: '#A44A3F', 
+    },
+  },
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#A44A3F', 
+          }
+        }
+      }
+    }
+  }
+});
 
-
-function RecipeSearchPage(){
-    // State variables to manage ingredients and recipes
+function RecipeSearchPage() {
     const [ingredients, setIngredients] = React.useState({
         ingredient1: "",
         ingredient2: "",
@@ -14,86 +34,99 @@ function RecipeSearchPage(){
     });
     const [recipes, setRecipes] = React.useState([]);
 
-    // Function to handle form submission when press button
     const handleSubmit = async () => {
-        try { 
-            // Create a comma-separated list of ingredients
+        try {
             const ingredientsList = Object.values(ingredients).filter(ingredient => ingredient.trim() !== "").join(", ");
-            // Fetch recipes based on the entered ingredients
-            const recipes = await api.searchByIngredients(ingredientsList);
-            // Update state with fetched recipes
-            setRecipes(recipes);
+            const fetchedRecipes = await api.searchByIngredients(ingredientsList);
+            setRecipes(fetchedRecipes);
         } catch (error) {
             console.log(error);
         }
     }
 
-    // Function to handle input changes
     const handleChange = (e) => {
-        // Update the corresponding ingredient in state
         setIngredients({
             ...ingredients,
             [e.target.name]: e.target.value
         });
     }
+
     return (
-        <Grid container spacing={2}>
-           
-            {/* Left column for text fields and submit button */}
-            <Grid item xs={4}>
-                {/* Nested grid container with direction set to column and alignItems set to center */}
-                <Grid container direction="column" spacing={2} alignItems="center">
-                    {/* Text field for Ingredient 1 */}
-                    <Grid item>
-                        <TextField name="ingredient1" id="outlined-basic" label="Ingredient 1" variant="outlined" onChange={handleChange}/>
-                    </Grid>
-                    {/* Text field for Ingredient 2 */}
-                    <Grid item>
-                        <TextField name="ingredient2" id="outlined-basic" label="Ingredient 2" variant="outlined" onChange={handleChange}/>
-                    </Grid>
-                    {/* Text field for Ingredient 3 */}
-                    <Grid item>
-                        <TextField name="ingredient3" id="outlined-basic" label="Ingredient 3" variant="outlined" onChange={handleChange}/>
-                    </Grid>
-                    {/* Submit button */}
-                    <Grid item>
-                        <Button
-                            variant="contained"
-                            onClick={handleSubmit}
-                            sx={{
-                                backgroundColor: '#A44A3F', // Set background color
-                                color: '#FFC7C0', // Set text color
-                                '&:hover': {
-                                    backgroundColor: '#6d312a', // Set background color on hover
-                                    color: '#F8B0A8', // Set text color on hover
-                                },
-                                
-                            }}
-                        >
-                            Submit
-                        </Button>
-                    </Grid>
-
-                </Grid>
-            </Grid>
-
-            {/* Right column for displaying recipes */}
-            <Grid item xs={8}>
-                <Grid container spacing={2}>
-                    {/* Map over fetched recipes and render RecipeCard components */}
-                    {recipes.map((recipe, index) => (
-                        <Grid item xs={4} key={index}> 
-                            <RecipeCard
-                                title={recipe.title}
-                                image={recipe.image}
-                                recipeId={recipe.id} 
+        <ThemeProvider theme={theme}>
+            <Grid container spacing={2} style={{ padding: '20px' }}> 
+                <Grid item xs={3}>
+                    <Grid container direction="column" spacing={2} alignItems="center" sx={{ paddingTop: '20px', paddingLeft: '20px' }}> 
+                        <Grid item>
+                            <TextField 
+                                name="ingredient1" 
+                                label="Ingredient 1" 
+                                variant="outlined" 
+                                onChange={handleChange}
+                                sx={{
+                                    width: '100%',
+                                    '& .MuiInputBase-input': {
+                                        fontWeight: 'bold' // Applying bold styling locally
+                                    }
+                                }}
                             />
                         </Grid>
-                    ))}
+                        <Grid item>
+                            <TextField 
+                                name="ingredient2" 
+                                label="Ingredient 2" 
+                                variant="outlined" 
+                                onChange={handleChange}
+                                sx={{
+                                    width: '100%',
+                                    '& .MuiInputBase-input': {
+                                        fontWeight: 'bold' // Applying bold styling locally
+                                    }
+                                }}
+                            />
+                        </Grid>
+                        <Grid item>
+                            <TextField 
+                                name="ingredient3" 
+                                label="Ingredient 3" 
+                                variant="outlined" 
+                                onChange={handleChange}
+                                sx={{
+                                    width: '100%',
+                                    '& .MuiInputBase-input': {
+                                        fontWeight: 'bold' // Applying bold styling locally
+                                    }
+                                }}
+                            />
+                        </Grid>
+                        <Grid item>
+                            <Button
+                                variant="contained"
+                                onClick={handleSubmit}
+                                sx={{
+                                    fontFamily: 'Poppins, sans-serif', 
+                                    fontWeight: 'bold', 
+                                    fontSize: '14px', 
+                                    backgroundColor: '#A44A3F', 
+                                    color: '#F6F4D2', 
+                                }}
+                            >
+                                Submit
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid item xs={8}>
+                    <Grid container spacing={2}>
+                        {recipes.map((recipe, index) => (
+                            <Grid item xs={4} key={index}>
+                                <RecipeCard title={recipe.title} image={recipe.image} recipeId={recipe.id}/>
+                            </Grid>
+                        ))}
+                    </Grid>
                 </Grid>
             </Grid>
-        </Grid>
+        </ThemeProvider>
     );
-
 }
+
 export default RecipeSearchPage;
