@@ -9,7 +9,15 @@ import { Link } from 'react-router-dom';
 export default function RecipeCard({ title, image, recipeId }) {
   return (
     <Link to={`/recipe/${recipeId}/information`} style={{ textDecoration: 'none' }}>
-      <Card style={{ height: '280px', backgroundColor: '#F6F4D2', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <Card style={{ 
+        height: '280px', 
+        backgroundColor: 'rgba(212, 224, 155, 0.2)',
+        border: '3px solid #D4E09B', 
+        boxShadow: 'none',
+        display: 'flex', 
+        flexDirection: 'column', 
+        justifyContent: 'space-between' 
+      }}>
         <CardActionArea style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', padding: '16px' }}>
           <div style={{
               height: '60%', 
@@ -41,7 +49,7 @@ export default function RecipeCard({ title, image, recipeId }) {
                 fontFamily: 'Poppins, sans-serif',
                 fontWeight: 700,
                 fontSize: '14px',
-                textAlign: 'center',
+                textTransform: 'uppercase'
               }}
             >
               {title}
