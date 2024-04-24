@@ -130,12 +130,29 @@ function TopMenuBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu} sx={{ color: '#A44A3F', '&:hover': { backgroundColor: '#F6F4D2' } }}>
-                  <Typography textAlign="center" fontFamily='"Roboto Mono", monospace'>{setting}</Typography>
+              {/* Map settings array to create dynamic menu items */}
+              {settings.map((setting) => {
+                // Define routes for each setting
+                let route = '/';
+                if (setting === 'Favorites') {
+                  route = '/favorites';
+                } else if (setting === 'Logout') {
+                  route = '/login';
+                }
+              
+              return (
+                <MenuItem key={setting} onClick={handleCloseUserMenu} sx={{ color: '#A44A3F', '&:hover': { backgroundColor: '#F6F4D2' }}}> 
+                    <Link component={Link} to={route} style={{ textDecoration: 'none', display: 'block', width: '100%' }} sx={{ color: '#A44A3F', '&:hover': { backgroundColor: '#F6F4D2' }}}>
+                    <Typography textAlign="center" fontFamily='"Roboto Mono", monospace' sx={{ color: '#A44A3F'}} >{setting}</Typography>
+                  </Link>
                 </MenuItem>
-              ))}
+              );
+
+              })}
+      
             </Menu>
+
+
           </Box>
 
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
