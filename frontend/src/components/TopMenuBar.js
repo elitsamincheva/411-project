@@ -22,6 +22,7 @@ function TopMenuBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [userAvatar, setUserAvatar] = useState(null); // State to store user's avatar URL
+  const [userName, setUserName] = useState(null); // State to store user's name
   const navigateTo = useNavigate();
 
   useEffect(() => {
@@ -35,9 +36,11 @@ function TopMenuBar() {
           let data = await response.json();
           // Extract the user's avatar URL from the response
           const avatarUrl = data.images[0].url;
+          const name = data.display_name;
 
           // Update the user's avatar state with the retrieved URL
           setUserAvatar(avatarUrl);
+          setUserName(name);
         } else {
           navigateTo('/login')
         }
@@ -107,6 +110,10 @@ function TopMenuBar() {
           </Typography>
 
           <Box sx={{ flexGrow: 1 }} />
+          
+          <Typography sx={{ color: '#F6F4D2', marginRight: '10px' }}>
+              Welcome, {userName} {/* Display user's name */}
+          </Typography>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
@@ -141,6 +148,7 @@ function TopMenuBar() {
                 }
               
               return (
+                // Routes for profile drop down
                 <MenuItem key={setting} onClick={handleCloseUserMenu} sx={{ color: '#A44A3F', '&:hover': { backgroundColor: '#F6F4D2' }}}> 
                     <Link component={Link} to={route} style={{ textDecoration: 'none', display: 'block', width: '100%' }} sx={{ color: '#A44A3F', '&:hover': { backgroundColor: '#F6F4D2' }}}>
                     <Typography textAlign="center" fontFamily='"Roboto Mono", monospace' sx={{ color: '#A44A3F'}} >{setting}</Typography>
