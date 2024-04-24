@@ -14,7 +14,6 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
-
 const pages = ['Recipe Search'];
 const settings = ['Favorites', 'Logout'];
 
@@ -67,43 +66,24 @@ function TopMenuBar() {
   };
 
   return (
-    <AppBar position="static" elevation={0} sx={{ backgroundColor: '#F19C79', fontFamily: '"Roboto Mono", monospace', paddingTop: '10px' }}>
+    <AppBar position="static" elevation={0} sx={{ backgroundColor: '#F19C79', fontFamily: 'Poppins, sans-serif' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ p: 2 }}>
           <Typography
             variant="h6"
             noWrap
             component={Link}
-            to="/login"
+            to="http://localhost:3001/"
             sx={{
               mr: 2,
-              fontFamily: 'monospace',
+              fontFamily: 'Poppins, sans-serif',
               fontWeight: 700,
-              letterSpacing: '.3rem',
               color: '#F6F4D2',
               textDecoration: 'none',
-              fontSize: '1.5rem',
+              fontSize: '32px',
             }}
           >
             BeatBite
-          </Typography>
-
-          <Typography
-            variant="h6"
-            noWrap
-            component={Link}
-            to="/"
-            sx={{
-              mr: 2,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: '#F6F4D2',
-              textDecoration: 'none',
-              fontSize: '0.7rem', // Adjust font size here
-            }}
-          >
-            Recipe Search
           </Typography>
 
           <Box sx={{ flexGrow: 1 }} />
@@ -111,7 +91,15 @@ function TopMenuBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar src={userAvatar} sx={{ color: '#F19C79', bgcolor: '#F6F4D2' }} />
+                <Avatar 
+                  src={userAvatar} 
+                  sx={{ 
+                    width: 40,
+                    height: 40,
+                    bgcolor: '#F6F4D2',
+                    boxShadow: '0 0 0 2px #F19C79, 0 0 0 5px #F6F4D2',
+                  }} 
+                />
               </IconButton>
             </Tooltip>
             <Menu
@@ -141,9 +129,28 @@ function TopMenuBar() {
                 }
               
               return (
-                <MenuItem key={setting} onClick={handleCloseUserMenu} sx={{ color: '#A44A3F', '&:hover': { backgroundColor: '#F6F4D2' }}}> 
-                    <Link component={Link} to={route} style={{ textDecoration: 'none', display: 'block', width: '100%' }} sx={{ color: '#A44A3F', '&:hover': { backgroundColor: '#F6F4D2' }}}>
-                    <Typography textAlign="center" fontFamily='"Roboto Mono", monospace' sx={{ color: '#A44A3F'}} >{setting}</Typography>
+                <MenuItem 
+                  key={setting} 
+                  onClick={handleCloseUserMenu} 
+                  sx={{ 
+                    color: '#A44A3F', 
+                    '&:hover': { 
+                      backgroundColor: '#F6F4D2',
+                    },
+                  }}
+                > 
+                  <Link component={Link} to={route} style={{ textDecoration: 'none', display: 'block', width: '100%' }} sx={{ color: '#A44A3F', '&:hover': { backgroundColor: '#F6F4D2' }}}>
+                    <Typography 
+                      textAlign="left" 
+                      fontFamily='Poppins, sans-serif' 
+                      sx={{ 
+                        color: '#A44A3F', 
+                        fontWeight: 'bold',
+                        fontSize: '16px' 
+                      }} 
+                    >
+                      {setting}
+                    </Typography>
                   </Link>
                 </MenuItem>
               );
