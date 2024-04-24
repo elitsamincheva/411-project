@@ -41,7 +41,7 @@ export default function RecipeCard({ title, image, recipeId }) {
                 fontFamily: 'Poppins, sans-serif',
                 fontWeight: 700,
                 fontSize: '14px',
-                textAlign: 'center' // Centers the title text if you want
+                textAlign: 'center',
               }}
             >
               {title}
