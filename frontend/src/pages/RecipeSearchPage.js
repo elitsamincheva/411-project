@@ -65,7 +65,7 @@ function RecipeSearchPage() {
                                 sx={{
                                     width: '100%',
                                     '& .MuiInputBase-input': {
-                                        fontWeight: 'bold' // Applying bold styling locally
+                                        fontWeight: 'bold' 
                                     }
                                 }}
                             />
@@ -79,7 +79,7 @@ function RecipeSearchPage() {
                                 sx={{
                                     width: '100%',
                                     '& .MuiInputBase-input': {
-                                        fontWeight: 'bold' // Applying bold styling locally
+                                        fontWeight: 'bold' 
                                     }
                                 }}
                             />
@@ -93,7 +93,7 @@ function RecipeSearchPage() {
                                 sx={{
                                     width: '100%',
                                     '& .MuiInputBase-input': {
-                                        fontWeight: 'bold' // Applying bold styling locally
+                                        fontWeight: 'bold' 
                                     }
                                 }}
                             />
