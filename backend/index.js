@@ -1,11 +1,11 @@
 import express from 'express'; // Import Express framework
 import cors from 'cors'; // Import CORS middleware
 import 'dotenv/config.js'; // Import dotenv for environment variables
-import * as RecipeAPI from './recipe-api.js'; // Import RecipeAPI module
+import * as RecipeAPI from './src/recipe-api.js'; // Import RecipeAPI module
 import cookieParser from 'cookie-parser';
-import { login, authCallback, getUserInfo } from './spotify-auth.js';
+import { login, authCallback, getUserInfo } from './src/spotify-auth.js';
 import session from 'express-session';
-import { getRecommendations } from './generate-playlist.js';
+import { getRecommendations } from './src/generate-playlist.js';
 const app = express(); // Create an instance of Express to create the web server
 const port = 3000;
 // Middleware setup

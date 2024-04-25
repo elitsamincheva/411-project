@@ -22,6 +22,7 @@ export const login = async (req, res) => {
 
     var state = generateRandomString(16);
     res.cookie(stateKey, state);
+    console.log("logging in with spotify")
 
     // your application requests authorization
     var scope = 'user-read-private user-read-email user-top-read playlist-modify-private';
@@ -114,25 +115,32 @@ export const authCallback = async (req, res) => {
 // };
 
 export const getUserInfo = async (req, res) => {
+    // console.log("inside getUserInfo", req.session)
     if (req.session.user) {
+        console.log("user is defined")
         return res.json(req.session.user);
     } else if (req.session.tokens?.access_token) {
         try {
+            console.log("tokens", req.session.tokens.token_type, req.session.tokens.access_token)
             let userResponse = await fetch('https://api.spotify.com/v1/me', {
                 headers: { 'Authorization': `${req.session.tokens.token_type} ${req.session.tokens.access_token}` }
             });
             if (userResponse.ok) {
+                console.log("user is defined B")
                 req.session.user = await userResponse.json();
                 await req.session.save();
                 return res.json(req.session.user);
             } else {
+                console.log("user not defined A")
                 res.sendStatus(401);
             }
         } catch (error) {
+            console.log("user not defined B")
             console.log(error);
             res.sendStatus(401);
         }
     } else {
+        console.log("session doesn't exist")
         res.sendStatus(401);
     }
 };

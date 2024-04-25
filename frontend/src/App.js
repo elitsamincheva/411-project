@@ -10,12 +10,13 @@ function App() {
   return (
     <BrowserRouter basename='/'>
       <Routes>
+        { /* Set the login page as the root route */ }
         <Route element={<Layout />}>
-          <Route index path="/" element={<RecipeSearchPage />} />
+          <Route path="/" element={<RecipeSearchPage />} />
           <Route path="/recipe/:recipeId/information" element={<RecipePage />} />
           <Route path="/favorites" element={<UserFavoritesPage />} />
         </Route>
-        <Route path="/login" element={<LoginPage />} />
+        <Route index path='/login' element={<LoginPage />} /> 
       </Routes>
     </BrowserRouter>
   );

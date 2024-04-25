@@ -38,6 +38,7 @@ function TopMenuBar() {
           // Update the user's avatar state with the retrieved URL
           setUserAvatar(avatarUrl);
         } else {
+          console.log('error logging in')
           navigateTo('/login')
         }
 
