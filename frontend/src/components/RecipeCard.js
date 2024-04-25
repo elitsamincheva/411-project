@@ -11,7 +11,7 @@ export default function RecipeCard({ title, image, recipeId }) {
     <Link to={`/recipe/${recipeId}/information`} style={{ textDecoration: 'none' }}>
       <Card style={{ 
         height: '280px', 
-        backgroundColor: 'rgba(212, 224, 155, 0.2)',
+        backgroundColor: 'rgba(246, 244, 210, 0.3)',
         border: '3px solid #D4E09B', 
         boxShadow: 'none',
         display: 'flex', 
@@ -26,7 +26,7 @@ export default function RecipeCard({ title, image, recipeId }) {
               display: 'flex', 
               justifyContent: 'center', 
               alignItems: 'center', 
-              borderRadius: '8px', 
+              borderRadius: '4px', 
               marginTop: '8px', 
             }}>
             <CardMedia
@@ -34,7 +34,7 @@ export default function RecipeCard({ title, image, recipeId }) {
               style={{
                 height: '120%', 
                 maxWidth: '120%', 
-                objectFit: 'cover' 
+                objectFit: 'cover'
               }}
               image={image}
               alt={title}
