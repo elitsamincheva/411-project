@@ -24,7 +24,7 @@ export const login = async (req, res) => {
     res.cookie(stateKey, state);
 
     // your application requests authorization
-    var scope = 'user-read-private user-read-email';
+    var scope = 'user-read-private user-read-email user-top-read playlist-modify-private';
     res.redirect('https://accounts.spotify.com/authorize?' +
         new URLSearchParams({
             response_type: 'code',

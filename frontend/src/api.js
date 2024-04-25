@@ -34,4 +34,25 @@ export const getRecipeDetails = async (recipeId) => {
     return response.json();
 };
 
+// Function for generating a playlist based on user preferences
+export const generatePlaylist = async (minutes, recipeName) => {
+    // Fetch data from the backend API
+    const response = await fetch('http://localhost:3000/api/generate-playlist', {   // sends a POST request to the backend API endpoint
+        method: 'POST', // request method is POST, indicating that data will be sent to the server
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ minutes, recipeName }),
+        credentials: 'include' 
+    });
+
+    // Check if the response is successful
+    if (!response.ok) {
+        // Throw an error if response is not ok
+        throw new Error(`HTTP error. Status: ${response.status}`);
+    }
+
+    // Parse the response as JSON and return it
+    return response.json();
+};
 

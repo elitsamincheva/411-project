@@ -5,6 +5,7 @@ import * as RecipeAPI from './recipe-api.js'; // Import RecipeAPI module
 import cookieParser from 'cookie-parser';
 import { login, authCallback, getUserInfo } from './spotify-auth.js';
 import session from 'express-session';
+import { getRecommendations } from './generate-playlist.js';
 const app = express(); // Create an instance of Express to create the web server
 const port = 3000;
 // Middleware setup
@@ -53,6 +54,12 @@ app.get("/api/recipes/:id/information", async (req, res) => {
     } catch (error) {
         return res.status(500).json({ error: error.message });
     }
+});
+
+app.post("/api/generate-playlist", async (req, res) => {
+    const body = req.body;
+    const recommendations = await getRecommendations(body.minutes, body.recipeName, req);
+    return res.json(recommendations);
 });
 
 // Start the web server on port 3000
