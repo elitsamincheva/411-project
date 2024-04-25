@@ -5,8 +5,8 @@ import { Grid, Button, Card, CardContent, CardMedia, Typography } from '@mui/mat
 
 // Inline CSS style for Reddit Mono font
 const redditMonoTitleStyle = {
-  fontFamily: 'Reddit Mono, monospace',
-  fontWeight: 600, // Adjust weight as needed,
+  fontFamily: 'Poppins, sans-serif',
+  fontWeight: 700, // Adjust weight as needed,
   color: '#50543A',
 };
 
@@ -98,7 +98,15 @@ function RecipePage() {
             </Grid>
             <Grid item xs={12} md={4}>
                 <div style={{ textAlign: 'right' }}>
-                    <Button variant="contained" onClick={handleGeneratePlaylist}>
+                    <Button variant="contained" sx={{
+                                    fontFamily: 'Poppins, sans-serif', 
+                                    fontWeight: 'bold', 
+                                    fontSize: '14px', 
+                                    backgroundColor: '#A44A3F', 
+                                    color: '#F6F4D2', 
+                                }} 
+                        onClick={handleGeneratePlaylist}>
+
                         Generate Playlist
                     </Button>
                     {playlist && (
