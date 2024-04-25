@@ -54,7 +54,7 @@ function RecipeSearchPage() {
     return (
         <ThemeProvider theme={theme}>
             <Grid container style={{ maxWidth: '100vw', margin: '0', padding: '20px' }}>
-                <Grid item xs={3}>
+                <Grid item xs={4}>
                     <Grid container direction="column" spacing={2} alignItems="center" sx={{ paddingTop: '20px', paddingLeft: '20px' }}> 
                         <Grid item>
                             <TextField 
@@ -115,7 +115,7 @@ function RecipeSearchPage() {
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item xs={9}>
+                <Grid item xs={8}>
                     <Grid container spacing={3} justifyContent="center">
                         {recipes.map((recipe, index) => (
                             <Grid item xs={4} key={index}>
