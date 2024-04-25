@@ -6,10 +6,9 @@ import { Grid, Button } from '@mui/material';
 function RecipePage() {
     const [recipe, setRecipe] = useState(null);
     const [loading, setLoading] = useState(true);
-    const { recipeId } = useParams(); // Ensure that recipeId is extracted from the URL
+    const [playlist, setPlaylist] = useState(null);
+    const { recipeId } = useParams();
 
-    console.log("recipe id:", recipeId);
-    
     useEffect(() => {
         const fetchRecipeDetails = async () => {
             try {
@@ -25,6 +24,17 @@ function RecipePage() {
         fetchRecipeDetails();
     }, [recipeId]);
 
+    const handleGeneratePlaylist = async () => {
+        console.log('Generating playlist...');
+        try {
+            const generatedPlaylist = await api.generatePlaylist(recipe.readyInMinutes, recipe.title);
+            console.log('Generated playlist:', generatedPlaylist);
+            setPlaylist(generatedPlaylist);
+        } catch (error) {
+            console.error('Error generating playlist:', error);
+        }
+    };
+
     if (loading) {
         return <p>Loading...</p>;
     }
@@ -35,7 +45,7 @@ function RecipePage() {
 
     return (
         <Grid container spacing={2}>
-            <Grid item xs={12} md={8}> {/* Left column takes full width on small screens and 8 columns on medium screens */}
+            <Grid item xs={12} md={8}>
                 <div>
                     <h2>{recipe.title}</h2>
                     <img src={recipe.image} alt={recipe.title} />
@@ -55,11 +65,19 @@ function RecipePage() {
                     ))}
                 </div>
             </Grid>
-            <Grid item xs={12} md={4}> {/* Right column takes full width on small screens and 4 columns on medium screens */}
+            <Grid item xs={12} md={4}>
                 <div style={{ textAlign: 'right' }}>
-                    <Button variant = "contained">
+                    <Button variant="contained" onClick={handleGeneratePlaylist}>
                         Generate Playlist
                     </Button>
+                    {playlist && (
+                        <div>
+                            <h3>Generated Playlist:</h3>
+                            <iframe style={{'border-radius':'12px'}} src={`https://open.spotify.com/embed/playlist/${playlist.id}?utm_source=generator`} 
+                            width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; 
+                            picture-in-picture" loading="lazy"></iframe>
+                        </div>
+                    )}
                 </div>
             </Grid>
         </Grid>
