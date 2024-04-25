@@ -1,7 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as api from '../api';
-import { Grid, Button } from '@mui/material';
+import { Grid, Button, Card, CardContent, CardMedia, Typography } from '@mui/material';
+
+// Inline CSS style for Reddit Mono font
+const redditMonoTitleStyle = {
+  fontFamily: 'Reddit Mono, monospace',
+  fontWeight: 600, // Adjust weight as needed,
+  color: '#50543A',
+};
+
+const redditMonoKeywordStyle = {
+    ...redditMonoTitleStyle, // Inherit properties from the title style
+    fontSize: '14px', // Adjust size as needed
+  };
 
 function RecipePage() {
     const [recipe, setRecipe] = useState(null);
@@ -44,26 +56,45 @@ function RecipePage() {
     }
 
     return (
-        <Grid container spacing={2}>
+        <Grid container spacing={2} sx={{ padding: '16px' }}>
             <Grid item xs={12} md={8}>
-                <div>
-                    <h2>{recipe.title}</h2>
-                    <img src={recipe.image} alt={recipe.title} />
-                    <p>Servings: {recipe.servings}</p>
-                    <p>Ready in minutes: {recipe.readyInMinutes}</p>
-            
-                    <h3>Instructions:</h3>
-                    {recipe.analyzedInstructions.map((section, index) => (
-                        <div key={index}>
-                            <h4>{section.name}</h4>
-                            <ol>
-                                {section.steps.map((step) => (
-                                    <li key={step.number}>{step.step}</li>
-                                ))}
-                            </ol>
-                        </div>
-                    ))}
-                </div>
+                <Card style={{ 
+                    height: '100%',
+                    border: '3px solid #D4E09B', 
+                    boxShadow: 'none',
+                    backgroundColor: 'rgba(246, 244, 210, 0.3)',
+                }}>
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="div" sx={redditMonoTitleStyle}>
+                        {recipe.title}
+                        </Typography>
+                        <CardMedia
+                        component="img"
+                        style={{ height: 'auto', maxWidth: '100%' , marginBottom: '16px'}}
+                        image={recipe.image}
+                        alt={recipe.title}
+                        />
+                        <Typography variant="body2" color="text.secondary" sx={redditMonoKeywordStyle}>
+                        Servings: {recipe.servings}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary" sx={redditMonoKeywordStyle}>
+                        Ready in minutes: {recipe.readyInMinutes}
+                        </Typography>
+                        <Typography variant="body1">
+                        <strong style={redditMonoKeywordStyle}>Instructions:</strong>
+                        </Typography>
+                        {recipe.analyzedInstructions.map((section, index) => (
+                            <div key={index}>
+                                <Typography variant="body1" gutterBottom ><strong>{section.name}</strong></Typography>
+                                <ol style={redditMonoKeywordStyle}>
+                                    {section.steps.map((step) => (
+                                        <li key={step.number}>{step.step}</li>
+                                    ))}
+                                </ol>
+                            </div>
+                        ))}
+                    </CardContent>
+                </Card>
             </Grid>
             <Grid item xs={12} md={4}>
                 <div style={{ textAlign: 'right' }}>
@@ -72,8 +103,8 @@ function RecipePage() {
                     </Button>
                     {playlist && (
                         <div>
-                            <h3>Generated Playlist:</h3>
-                            <iframe style={{'border-radius':'12px'}} src={`https://open.spotify.com/embed/playlist/${playlist.id}?utm_source=generator`} 
+                            
+                            <iframe style={{ borderRadius: '12px' }} src={`https://open.spotify.com/embed/playlist/${playlist.id}?utm_source=generator`} 
                             width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; 
                             picture-in-picture" loading="lazy"></iframe>
                         </div>
