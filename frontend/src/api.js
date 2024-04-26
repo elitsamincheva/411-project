@@ -56,3 +56,32 @@ export const generatePlaylist = async (minutes, recipeName) => {
     return response.json();
 };
 
+export const addUserFavorite = async(recipe, playlist_id) => {
+    const response = await fetch('http://localhost:3000/api/favorites', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ recipe, playlist_id }),
+        credentials: 'include'
+    });
+
+    if(!response.ok) {
+        throw new Error(`Status: ${response.status}`);
+    }
+
+    return response.json();
+};
+
+export const getUserFavorites = async() => {
+    const response = await fetch('http://localhost:3000/api/favorites', {
+        credentials: 'include'
+    });
+
+    if(!response.ok) {
+        throw new Error(`Status: ${response.status}`);
+    }
+
+    return response.json();
+};
+

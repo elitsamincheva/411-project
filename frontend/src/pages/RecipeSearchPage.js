@@ -119,7 +119,7 @@ function RecipeSearchPage() {
                     <Grid container spacing={3} justifyContent="center">
                         {recipes.map((recipe, index) => (
                             <Grid item xs={4} key={index}>
-                                <RecipeCard title={recipe.title} image={recipe.image} recipeId={recipe.id}/>
+                                <RecipeCard title={recipe.title} image={recipe.image} linkTo={`/recipe/${recipe.id}/information`}/>
                             </Grid>
                         ))}
                     </Grid>

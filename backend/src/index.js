@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import { login, authCallback, getUserInfo } from './spotify-auth.js';
 import session from 'express-session';
 import { getRecommendations } from './generate-playlist.js';
+import { addUserFavorite, getUserFavorites } from './favorites-api.js';
 const app = express(); // Create an instance of Express to create the web server
 const port = 3000;
 // Middleware setup
@@ -30,6 +31,8 @@ app.get('/auth/callback', authCallback);
 // app.get('/refresh_token', refreshToken);
 app.get('/user', getUserInfo);
 
+app.get('/api/favorites', getUserFavorites);
+app.post('/api/favorites', addUserFavorite);
 
 // Route for searching recipes by ingredients
 app.get("/api/recipes/search", async (req, res) => {
