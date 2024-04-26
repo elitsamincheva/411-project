@@ -187,18 +187,24 @@ function RecipePage() {
                             picture-in-picture" loading="lazy"></iframe>
                         </div>
                     )}
-                    {showAddToFavs && <Button onClick={addToFavorites} style={{ marginTop: '16px' }} variant="contained" endIcon={<FavoriteIcon />} sx={{
-                                        fontFamily: 'Poppins, sans-serif', 
-                                        fontWeight: 'bold', 
-                                        fontSize: '14px', 
-                                        backgroundColor: '#E5EAB7', 
-                                        color: '#606C38', 
-                                        '&:hover': {
-                                            backgroundColor: '#D4E09B',
-                                          },
-                                    }} >
-                        Add to favs
-                    </Button>} {/* Show the Add to favs button only if the playlist is generated */}
+                    {showAddToFavs && <Button 
+                        onClick={addToFavorites} 
+                        style={{ marginTop: '16px' }} 
+                        variant="contained" 
+                        startIcon={<FavoriteIcon />} 
+                        sx={{
+                            fontFamily: 'Poppins, sans-serif', 
+                            fontWeight: 'bold', 
+                            fontSize: '14px', 
+                            backgroundColor: '#E5EAB7', 
+                            color: '#606C38', 
+                            '&:hover': {
+                                backgroundColor: '#D4E09B',
+                            },
+                        }} 
+                    >
+                        Add to Favorites
+                    </Button>} {/* Show the Add to Favorites button only if the playlist is generated */}
                 </div>
             </Grid>
         </Grid>
