@@ -53,7 +53,7 @@ function RecipeSearchPage() {
 
     return (
         <ThemeProvider theme={theme}>
-            <Grid container style={{ maxWidth: '100vw', margin: '0', padding: '40px 20px 20px' }}>
+            <Grid container style={{ maxWidth: '100vw', margin: '0', padding: '20px' }}>
                 <Grid item xs={4}>
                     <Grid container direction="column" spacing={2} alignItems="center" sx={{ paddingTop: '20px', paddingLeft: '20px' }}> 
                         <Grid item>
