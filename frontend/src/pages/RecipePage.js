@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as api from '../api';
-import { Grid, Button, Card, CardContent, CardMedia, Typography } from '@mui/material';
+import { Grid, Button, Card, CardContent, CardMedia, Typography, CircularProgress } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const titleStyle = {
@@ -91,8 +91,17 @@ function RecipePage() {
 
 
     if (loading) {
-        return <p>Loading...</p>;
-    }
+        return (
+            <div style={{ 
+                display: 'flex', 
+                justifyContent: 'center', 
+                alignItems: 'center', 
+                height: '100vh'
+            }}>
+                <CircularProgress sx={{ color: '#A44A3F' }} />
+            </div>
+        );
+    }    
 
     if (!recipe) {
         return <p>Recipe not found</p>;
