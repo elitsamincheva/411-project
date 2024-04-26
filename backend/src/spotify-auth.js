@@ -114,28 +114,34 @@ export const authCallback = async (req, res) => {
 // };
 
 export const getUserInfo = async (req, res) => {
-    if (req.session.user) {
-        return res.json(req.session.user);
-    } else if (req.session.tokens?.access_token) {
-        try {
-            let userResponse = await fetch('https://api.spotify.com/v1/me', {
-                headers: { 'Authorization': `${req.session.tokens.token_type} ${req.session.tokens.access_token}` }
-            });
-            if (userResponse.ok) {
-                req.session.user = await userResponse.json();
-                await req.session.save();
-                return res.json(req.session.user);
-            } else {
-                res.sendStatus(401);
+    if (!req.session.tokens || !req.session.tokens.access_token) {
+        console.log("No access token available.");
+        res.status(401).json({ error: 'Unauthorized - No access token.' });
+        return;
+    }
+
+    try {
+        const userResponse = await fetch('https://api.spotify.com/v1/me', {
+            headers: {
+                'Authorization': `${req.session.tokens.token_type} ${req.session.tokens.access_token}`
             }
-        } catch (error) {
-            console.log(error);
-            res.sendStatus(401);
+        });
+
+        if (userResponse.ok) {
+            const userData = await userResponse.json();
+            req.session.user = userData;  // Update the session with the new user data
+            await req.session.save();  // Ensure the session is saved
+            res.json(userData);
+        } else {
+            console.error("Failed to retrieve user data:", await userResponse.text());
+            res.status(401).json({ error: 'Unauthorized - API call failed.' });
         }
-    } else {
-        res.sendStatus(401);
+    } catch (error) {
+        console.error("Error fetching user information:", error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+
 
 export const searchSpotify = async (req, res) => {
     if (req.session.tokens?.access_token) {
