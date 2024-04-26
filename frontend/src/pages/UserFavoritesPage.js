@@ -30,10 +30,10 @@ function UserFavoritesPage() {
     return (
 
         <>
-        <h1>Your Favorites</h1>
-        <Grid container style={{ maxWidth: '100vw', margin: '0', padding: '40px 20px 20px' }}>
+        <h1 style={{ textTransform: 'uppercase', color: '#A44A3F', textAlign: 'center' }}>Favorites</h1>
+        <Grid container style={{ maxWidth: '100vw', margin: '0', padding: '20px 40px' }}>
             <Grid item xs={12}>
-                <Grid container spacing={3} justifyContent="center">
+                <Grid container spacing={3} justifyContent="flex-start">
                     {favorites.map((favorite, index) => (
                         <Grid item xs={3} key={index}>
                             <RecipeCard title={favorite.recipe.title} image={favorite.recipe.image} linkTo={`/recipe/${favorite.recipe.id}/information`}/>
