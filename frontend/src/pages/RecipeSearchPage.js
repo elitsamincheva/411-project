@@ -53,9 +53,9 @@ function RecipeSearchPage() {
 
     return (
         <ThemeProvider theme={theme}>
-            <Grid container style={{ maxWidth: '100vw', margin: '0', padding: '20px' }}>
-                <Grid item xs={4}>
-                    <Grid container direction="column" spacing={2} alignItems="center" sx={{ paddingTop: '20px', paddingLeft: '20px' }}> 
+            <Grid container style={{ maxWidth: '100vw', margin: '0', padding: '20px 20px 20px 0' }}>
+                <Grid item xs={3}>
+                    <Grid container direction="column" spacing={2} alignItems="center" sx={{ padding: '20px' }}> 
                         <Grid item>
                             <TextField 
                                 name="ingredient1" 
@@ -115,8 +115,8 @@ function RecipeSearchPage() {
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item xs={8}>
-                    <Grid container spacing={3} justifyContent="center">
+                <Grid item xs={9}>
+                    <Grid container spacing={3} justifyContent="center" sx={{ paddingRight: '40px' }}>
                         {recipes.map((recipe, index) => (
                             <Grid item xs={4} key={index}>
                                 <RecipeCard title={recipe.title} image={recipe.image} linkTo={`/recipe/${recipe.id}/information`}/>
