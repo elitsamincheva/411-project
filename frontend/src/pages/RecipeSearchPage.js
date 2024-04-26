@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, TextField, Button, ThemeProvider, createTheme } from '@mui/material';
+import { Grid, TextField, Button, ThemeProvider, createTheme, Typography } from '@mui/material';
 import * as api from '../api';
 import RecipeCard from '../components/RecipeCard';
 
@@ -119,13 +119,30 @@ function RecipeSearchPage() {
                     </Grid>
                 </Grid>
                 <Grid item xs={9}>
+                {recipes.length > 0 ? (
                     <Grid container spacing={3} justifyContent="center" sx={{ paddingRight: '40px' }}>
-                        {recipes.map((recipe, index) => (
-                            <Grid item xs={4} key={index}>
-                                <RecipeCard title={recipe.title} image={recipe.image} linkTo={`/recipe/${recipe.id}/information`}/>
-                            </Grid>
-                        ))}
+                    {recipes.map((recipe, index) => (
+                        <Grid item xs={12} sm={6} md={4} key={index}>
+                        <RecipeCard title={recipe.title} image={recipe.image} linkTo={`/recipe/${recipe.id}/information`} />
+                        </Grid>
+                    ))}
                     </Grid>
+                ) : (
+                    <Typography
+                    variant="h4"
+                    component="h2"
+                    sx={{
+                        textAlign: 'center',
+                        fontFamily: '"Roboto Mono", monospace', 
+                        color: '#A44A3F', 
+                        marginTop: '20px', 
+                        marginBottom: '20px', 
+                        fontSize: '18px',
+                    }}
+                    >
+                    Find recipes by ingredients that you have on hand.
+                    </Typography>
+                )}
                 </Grid>
             </Grid>
         </ThemeProvider>
