@@ -120,7 +120,7 @@ function RecipeSearchPage() {
                 </Grid>
                 <Grid item xs={9}>
                 {recipes.length > 0 ? (
-                    <Grid container spacing={3} justifyContent="center" sx={{ paddingRight: '40px' }}>
+                    <Grid container spacing={3} justifyContent="flex-start" sx={{ paddingRight: '40px' }}>
                     {recipes.map((recipe, index) => (
                         <Grid item xs={12} sm={6} md={4} key={index}>
                         <RecipeCard title={recipe.title} image={recipe.image} linkTo={`/recipe/${recipe.id}/information`} />
