@@ -108,6 +108,9 @@ function RecipeSearchPage() {
                                     fontSize: '14px', 
                                     backgroundColor: '#A44A3F', 
                                     color: '#F6F4D2', 
+                                    '&:hover': {
+                                        backgroundColor: '#823C32',
+                                    },
                                 }}
                             >
                                 Submit

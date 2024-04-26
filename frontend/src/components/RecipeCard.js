@@ -49,7 +49,8 @@ export default function RecipeCard({ title, image, linkTo }) {
                 fontFamily: 'Poppins, sans-serif',
                 fontWeight: 700,
                 fontSize: '14px',
-                textTransform: 'uppercase'
+                textTransform: 'uppercase',
+                color: '#03071E',
               }}
             >
               {title}
