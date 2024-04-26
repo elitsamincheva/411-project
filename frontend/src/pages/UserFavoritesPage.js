@@ -1,24 +1,49 @@
-import React from 'react';
-import { Grid, Button } from '@mui/material';
 
+import { Grid } from '@mui/material';
+import * as api from '../api';
+import React, { useState, useEffect } from 'react';
+import RecipeCard from '../components/RecipeCard';
 
 function UserFavoritesPage() {
+    const [favorites, setFavorites] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    const handleClick = async() => {
-        try{
-            const response = await fetch("http://localhost:3000/api/recommendations");
-            if(response.ok){
-                let data = await response.json();
+    useEffect(() => {
+        const fetchFavorites = async () => {
+            try {
+                const result = await api.getUserFavorites();
+                setFavorites(result);
+            } catch (error) {
+                console.error('Error fetching favorites :', error);
+            } finally {
+                setLoading(false);
             }
-        } catch(error){
-            console.log(error);
-        }
-        
+        };
+
+        fetchFavorites();
+    }, []);
+
+    if (loading) {
+        return <p>Loading...</p>;
     }
+    
     return (
-        <Grid container spacing={2}>
-            <Button onClick={handleClick}></Button>
+
+        <>
+        <h1>Your Favorites</h1>
+        <Grid container style={{ maxWidth: '100vw', margin: '0', padding: '40px 20px 20px' }}>
+            <Grid item xs={12}>
+                <Grid container spacing={3} justifyContent="center">
+                    {favorites.map((favorite, index) => (
+                        <Grid item xs={3} key={index}>
+                            <RecipeCard title={favorite.recipe.title} image={favorite.recipe.image} linkTo={`/recipe/${favorite.recipe.id}/information`}/>
+                        </Grid>
+                    ))}
+                </Grid>
+            </Grid>
         </Grid>
+        </>
+        
     );
 
 }

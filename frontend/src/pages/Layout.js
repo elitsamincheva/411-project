@@ -8,7 +8,7 @@ const Layout = () => {
       <Grid item xs={12}>
         <TopMenuBar />
       </Grid>
-      <Grid item xs={10}>
+      <Grid item xs={12}>
         <Outlet />
       </Grid>
     </Grid>

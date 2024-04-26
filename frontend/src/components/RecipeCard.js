@@ -6,9 +6,9 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-export default function RecipeCard({ title, image, recipeId }) {
+export default function RecipeCard({ title, image, linkTo }) {
   return (
-    <Link to={`/recipe/${recipeId}/information`} style={{ textDecoration: 'none' }}>
+    <Link to={linkTo} style={{ textDecoration: 'none' }}>
       <Card style={{ 
         height: '280px', 
         backgroundColor: 'rgba(246, 244, 210, 0.3)',
