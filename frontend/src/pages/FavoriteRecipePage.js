@@ -113,13 +113,13 @@ function RecipePage() {
 
     return (
         <Grid container spacing={2} sx={{ padding: '0 20px 20px' }}>
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12} md={8} >
                 <Card style={{ 
-                        height: '100%',
-                        backgroundColor: 'rgba(246, 244, 210, 0.3)',
-                        border: '3px solid #D4E09B', 
-                        boxShadow: 'none',
-                        margin: '20px 40px',
+                    height: '100%',
+                    backgroundColor: 'rgba(246, 244, 210, 0.3)',
+                    border: '3px solid #D4E09B', 
+                    boxShadow: 'none',
+                    margin: '20px 40px',
                 }}>
                     <CardContent style={{ 
                         padding: '40px', 
@@ -177,35 +177,47 @@ function RecipePage() {
                     
                     
                     {(
-                        <div>
+                        <div style={{ marginTop: '20px' }}>
                             <iframe style={{ borderRadius: '12px' }} src={`https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator`} 
                             width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; 
                             picture-in-picture" loading="lazy"></iframe>
                         </div>
                     )}
-                    {showAddToFavs && <Button onClick={addToFavorites} style={{ marginTop: '16px' }} variant="contained" endIcon={<FavoriteIcon />} sx={{
-                                        fontFamily: 'Poppins, sans-serif', 
-                                        fontWeight: 'bold', 
-                                        fontSize: '14px', 
-                                        backgroundColor: '#D4E09B', 
-                                        color: '#2c320f', 
-                                        '&:hover': {
-                                            backgroundColor: '#bbce61',
-                                          },
-                                    }} >
-                        Add to favs
+                    {showAddToFavs && <Button 
+                        onClick={addToFavorites} 
+                        style={{ marginTop: '16px' }} 
+                        variant="contained" 
+                        startIcon={<FavoriteIcon />} 
+                        sx={{
+                            fontFamily: 'Poppins, sans-serif', 
+                            fontWeight: 'bold', 
+                            fontSize: '14px', 
+                            backgroundColor: '#D4E09B', 
+                            color: '#2c320f', 
+                            '&:hover': {
+                                backgroundColor: '#bbce61',
+                            },
+                        }} 
+                    >
+                        Add to Favorites
                     </Button>} 
-                    {showRemoveFromFavs && <Button onClick={deleteFromFavorites} style={{ marginTop: '16px' }} variant="contained" endIcon={<FavoriteIcon />} sx={{
-                                        fontFamily: 'Poppins, sans-serif', 
-                                        fontWeight: 'bold', 
-                                        fontSize: '14px', 
-                                        backgroundColor: '#D4E09B', 
-                                        color: '#2c320f', 
-                                        '&:hover': {
-                                            backgroundColor: '#bbce61',
-                                          },
-                                    }} >
-                        Remove from favs
+                    {showRemoveFromFavs && <Button 
+                        onClick={deleteFromFavorites} 
+                        style={{ marginTop: '16px' }} 
+                        variant="contained" 
+                        startIcon={<FavoriteIcon />} 
+                        sx={{
+                            fontFamily: 'Poppins, sans-serif', 
+                            fontWeight: 'bold', 
+                            fontSize: '14px', 
+                            backgroundColor: '#E5EAB7', 
+                            color: '#606C38', 
+                            '&:hover': {
+                                backgroundColor: '#D4E09B',
+                            },
+                        }} 
+                    >
+                        Remove From Favorites
                     </Button>}
                 </div>
             </Grid>
