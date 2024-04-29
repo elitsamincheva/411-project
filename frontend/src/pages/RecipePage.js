@@ -150,15 +150,15 @@ function RecipePage() {
                         </Typography>
 
                         <Typography variant="body1" sx={instructionsTitleStyle}>
-                        <strong>Ingredients</strong>
+                        <strong>Instructions:</strong>
                         </Typography>
 
                         {recipe.analyzedInstructions.map((section, index) => (
                             <div key={index}>
-                                <Typography variant="body1" gutterBottom><strong>{section.name}</strong></Typography>
-                                <ol>
+                                <Typography variant="body1" gutterBottom ><strong>{section.name}</strong></Typography>
+                                <ol style={keywordStyle}>
                                     {section.steps.map((step) => (
-                                        <li key={step.number} style={instructionsStyle}>{step.step}</li>
+                                        <li key={step.number}>{step.step}</li>
                                     ))}
                                 </ol>
                             </div>

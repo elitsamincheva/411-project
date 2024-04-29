@@ -1,19 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as api from '../api';
-import { Grid, Button, Card, CardContent, CardMedia, Typography } from '@mui/material';
+import { Grid, Button, Card, CardContent, CardMedia, Typography, CircularProgress } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const titleStyle = {
-  fontFamily: 'Poppins, sans-serif',
-  fontWeight: 700, // Adjust weight as needed,
-  color: '#50543A',
+    fontFamily: 'Poppins, sans-serif',
+    fontWeight: 700,
+    fontSize: '24px',
+    color: '#03071E',
+    textTransform: 'uppercase',
 };
 
 const keywordStyle = {
-    ...titleStyle, // Inherit properties from the title style
-    fontSize: '14px', // Adjust size as needed
-  };
+    ...titleStyle, 
+    fontSize: '16px', 
+    textTransform: 'none',
+};
+
+const labelStyle = {
+    ...titleStyle, 
+    textTransform: 'none', 
+    fontSize: '16px', 
+};  
+
+const regularTextStyle = {
+    fontFamily: 'Poppins, sans-serif',
+    fontWeight: 'normal', 
+    fontSize: '14px', 
+};  
+
+const instructionsTitleStyle = {
+    ...keywordStyle, 
+    fontSize: '18px', 
+    marginTop: '30px', 
+    marginBottom: '20px', 
+    fontWeight: 'bold', 
+    textTransform: 'uppercase', 
+};  
+
+const instructionsStyle = {
+    ...keywordStyle, 
+    marginBottom: '10px', 
+};
 
 function RecipePage() {
     const [recipe, setRecipe] = useState(null);
@@ -66,41 +95,68 @@ function RecipePage() {
 
 
     if (loading) {
-        return <p>Loading...</p>;
-    }
+        return (
+            <div style={{ 
+                display: 'flex', 
+                justifyContent: 'center', 
+                alignItems: 'center', 
+                height: '100vh'
+            }}>
+                <CircularProgress sx={{ color: '#A44A3F' }} />
+            </div>
+        );
+    }   
 
     if (!recipe) {
         return <p>Recipe not found</p>;
     }
 
     return (
-        <Grid container spacing={2} sx={{ padding: '16px' }}>
+        <Grid container spacing={2} sx={{ padding: '0 20px 20px' }}>
             <Grid item xs={12} md={8}>
                 <Card style={{ 
-                    height: '100%',
-                    border: '3px solid #D4E09B', 
-                    boxShadow: 'none',
-                    backgroundColor: 'rgba(246, 244, 210, 0.3)',
+                        height: '100%',
+                        backgroundColor: 'rgba(246, 244, 210, 0.3)',
+                        border: '3px solid #D4E09B', 
+                        boxShadow: 'none',
+                        margin: '20px 40px',
                 }}>
-                    <CardContent>
+                    <CardContent style={{ 
+                        padding: '40px', 
+                        paddingBottom: '0', 
+                        overflow: 'auto',
+                    }}>
                         <Typography gutterBottom variant="h5" component="div" sx={titleStyle}>
                         {recipe.title}
                         </Typography>
                         <CardMedia
-                        component="img"
-                        style={{ height: 'auto', maxWidth: '100%' , marginBottom: '16px'}}
-                        image={recipe.image}
-                        alt={recipe.title}
+                            component="img"
+                            style={{
+                                height: 'auto',
+                                maxWidth: '60%',
+                                margin: '0 auto',
+                                display: 'block',
+                                padding: '20px', 
+                                borderRadius: '30px', 
+                                boxSizing: 'border-box', 
+                                marginBottom: '20px'
+                            }}
+                            image={recipe.image}
+                            alt={recipe.title}
                         />
-                        <Typography variant="body2" color="text.secondary" sx={keywordStyle}>
+
+                        <Typography variant="body2" color="text.secondary" sx={labelStyle}>
                         Servings: {recipe.servings}
                         </Typography>
-                        <Typography variant="body2" color="text.secondary" sx={keywordStyle}>
-                        Ready in minutes: {recipe.readyInMinutes}
+
+                        <Typography variant="body2" color="text.secondary" sx={labelStyle}>
+                        Ready in Minutes: {recipe.readyInMinutes}
                         </Typography>
-                        <Typography variant="body1">
-                        <strong style={keywordStyle}>Instructions:</strong>
+
+                        <Typography variant="body1" sx={instructionsTitleStyle}>
+                        <strong>Instructions:</strong>
                         </Typography>
+
                         {recipe.analyzedInstructions.map((section, index) => (
                             <div key={index}>
                                 <Typography variant="body1" gutterBottom ><strong>{section.name}</strong></Typography>
@@ -111,10 +167,12 @@ function RecipePage() {
                                 </ol>
                             </div>
                         ))}
+
                     </CardContent>
                 </Card>
             </Grid>
-            <Grid item xs={12} md={4} sx={{ textAlign: 'center' }}> {/* Adjusted alignment to right */}
+
+            <Grid item xs={12} md={4} sx={{ textAlign: 'center', paddingRight: '40px' }}> 
                 <div>
                     
                     
