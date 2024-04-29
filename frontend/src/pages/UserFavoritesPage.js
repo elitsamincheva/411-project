@@ -12,6 +12,7 @@ function UserFavoritesPage() {
         const fetchFavorites = async () => {
             try {
                 const result = await api.getUserFavorites();
+                console.log(result);
                 setFavorites(result);
             } catch (error) {
                 console.error('Error fetching favorites :', error);
@@ -21,6 +22,8 @@ function UserFavoritesPage() {
         };
 
         fetchFavorites();
+    
+
     }, []);
 
     if (loading) {
@@ -36,7 +39,7 @@ function UserFavoritesPage() {
                 <Grid container spacing={3} justifyContent="flex-start">
                     {favorites.map((favorite, index) => (
                         <Grid item xs={3} key={index}>
-                            <RecipeCard title={favorite.recipe.title} image={favorite.recipe.image} linkTo={`/recipe/${favorite.recipe.id}/information`}/>
+                            <RecipeCard title={favorite.recipe.title} image={favorite.recipe.image} linkTo={`/favorites/recipe/${favorite.id}/${favorite.recipe.id}/${favorite.playlist_id}`}/>
                         </Grid>
                     ))}
                 </Grid>

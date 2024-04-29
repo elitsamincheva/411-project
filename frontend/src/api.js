@@ -85,3 +85,21 @@ export const getUserFavorites = async() => {
     return response.json();
 };
 
+export const deleteUserFavorite = async (favoriteId) => {
+    // Construct the URL for the DELETE request
+    const url = `http://localhost:3000/api/favorites/${favoriteId}`;
+
+    // Send a DELETE request to the backend API
+    const response = await fetch(url, {
+        method: 'DELETE',
+        credentials: 'include'
+    });
+
+    // Check if the response is successful
+    if (!response.ok) {
+        // Throw an error if response is not ok
+        throw new Error(`HTTP error. Status: ${response.status}`);
+    }
+};
+
+

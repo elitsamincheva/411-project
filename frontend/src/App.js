@@ -5,6 +5,7 @@ import UserFavoritesPage from './pages/UserFavoritesPage';
 import LoginPage from './pages/LoginPage';
 import Layout from './pages/Layout';
 import RecipePage from './pages/RecipePage';
+import FavoriteRecipePage from './pages/FavoriteRecipePage';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <Route element={<Layout />}>
           <Route index path="/" element={<RecipeSearchPage />} />
           <Route path="/recipe/:recipeId/information" element={<RecipePage />} />
-          <Route path="/favorites/recipe/:recipeId/information" element={<RecipePage />} />
+          <Route path="/favorites/recipe/:favoriteId/:recipeId/:playlistId" element={<FavoriteRecipePage />} />
           <Route path="/favorites" element={<UserFavoritesPage />} />
         </Route>
         <Route path="/login" element={<LoginPage />} />
